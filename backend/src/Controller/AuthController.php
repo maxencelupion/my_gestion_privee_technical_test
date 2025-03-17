@@ -12,11 +12,18 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class AuthController extends AbstractController
 {
     #[Route('/auth/register', methods: ['POST'])]
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, ValidatorInterface $validator): Response
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
+        ValidatorInterface $validator,
+        JWTTokenManagerInterface $jwtManager): Response
     {
         $error_message = "Error during account creation: ";
         $data = json_decode($request->getContent(), true);
@@ -45,7 +52,9 @@ class AuthController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->json(['message' => 'Account created'], 201);
+        $token = $jwtManager->create($user);
+
+        return $this->json(['message' => 'Account created', 'token' => $token], 201);
     }
 
     #[Route('/auth/me', methods: ['GET'])]
