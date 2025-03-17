@@ -7,10 +7,10 @@
     <div v-else-if="user">
       <p><strong>ID:</strong> {{ user.id }}</p>
       <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Password:</strong> {{ user.password }}</p>
+      <p><strong>Hashed password:</strong> {{ user.password }}</p>
     </div>
     <div v-else>
-      <p>Erreur lors du chargement du profil.</p>
+      <p>Error retrieving profile</p>
     </div>
   </div>
 </template>
