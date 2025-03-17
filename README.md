@@ -1,4 +1,4 @@
-# Technical test My Gestion Privée
+# My Gestion Privée Technical Test
 ## Context
 This is my project for the technical test of My Gestion Privée. The goal is to create a simple web application that allows 
 the user to register/login, get his information and logout.
