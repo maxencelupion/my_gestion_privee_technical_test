@@ -51,10 +51,7 @@ export const AuthStore = defineStore('auth', () => {
     const registerData = { email, password };
     try {
       const response = await PostRegister(registerData);
-      console.log(response);
-      console.log('TOKEN:', response.token);
       if (response.token) {
-        console.log('SET TOKEN');
         localStorage.setItem('token', response.token);
         await check();
       } else {
@@ -73,7 +70,6 @@ export const AuthStore = defineStore('auth', () => {
 
   async function profile() {
     const profileData = await GetProfile()
-    console.log('PROFILE DATA: ' + profileData);
 
     return {
       id: profileData.data.id,
