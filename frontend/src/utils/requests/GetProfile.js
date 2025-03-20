@@ -3,7 +3,7 @@ import axios from 'axios';
 const GetProfile = async () => {
   try {
     const token = localStorage.getItem('token');
-    const response = await axios.get(`${import.meta.env.VITE_BACK_HOST}/auth/me`,
+    const response = await axios.get(`/auth/me`,
       {
         headers: {
           'Content-Type': 'application/json',

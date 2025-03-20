@@ -25,7 +25,6 @@ each matching the provided env.example files:
 
 - ./.env (root environment variables)
 - ./backend/.env (backend-specific environment variables)
-- ./frontend/.env (frontend-specific environment variables)
 
 
 ### Start the project 
