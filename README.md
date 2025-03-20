@@ -32,3 +32,5 @@ each matching the provided env.example files:
 ```bash
 docker compose up --build
 ```
+
+The project will now be available on http://localhost:8081/.
